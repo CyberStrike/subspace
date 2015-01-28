@@ -4,7 +4,7 @@
 
 
 $(document).on 'ready page:load', ->
-  if $('#chat.show')[0]?
+  if $('#chats.show')[0]?
 
     unless window.client?
       window.client = new MessageRocket
