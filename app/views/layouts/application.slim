@@ -1,0 +1,20 @@
+html lang='en'
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'A'}"
+    title = content_for?(:title) ? yield(:title) : 'Subspace'
+    == message_rocket_link_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body{id="#{params[:controller]}" class="#{params[:action]}"}
+    - if notice
+      p.notice = notice
+    - if alert
+      p.alert = alert
+    = render 'layouts/navbar'
+    .container
+      = yield
