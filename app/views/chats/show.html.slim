@@ -1,0 +1,39 @@
+.row
+  .chat-container
+    /.pull-right = @chat.user.email
+    h4 = @chat.title
+    .chat-window
+      .chat-item-container
+        .chat-item
+          p.text
+            | Once upon a midnight dreary, while I pondered, weak and weary,
+               Over many a quaint and curious volume of forgotten lore,
+                While I nodded, nearly napping, suddenly there came a tapping,
+                 As of some one gently rapping, rapping at my chamber door.
+                  Tis some visitor," I muttered, "tapping at my chamber door —
+                   Only this, and nothing more."
+        .chat-item
+          p.text
+            | Once upon a midnight dreary, while I pondered, weak and weary,
+               Over many a quaint and curious volume of forgotten lore,
+                While I nodded, nearly napping, suddenly there came a tapping,
+                 As of some one gently rapping, rapping at my chamber door.
+                  Tis some visitor," I muttered, "tapping at my chamber door —
+                   Only this, and nothing more."
+        .chat-item
+          p.text
+            | Once upon a midnight dreary, while I pondered, weak and weary,
+               Over many a quaint and curious volume of forgotten lore,
+                While I nodded, nearly napping, suddenly there came a tapping,
+                 As of some one gently rapping, rapping at my chamber door.
+                  Tis some visitor," I muttered, "tapping at my chamber door —
+                   Only this, and nothing more."
+    .chat-input
+      .input-group
+        Form
+          input#cmd.form-control type="text" placeholder="What do we do now?"
+        span.input-group-btn
+          button.btn.btn-default type="button" Go!
+
+
+            /= link_to 'Edit', edit_game_path(@game)
