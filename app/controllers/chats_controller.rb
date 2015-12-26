@@ -9,6 +9,15 @@ class ChatsController < ApplicationController
   end
 
   def show
+    MessageRocket.on :subscription_request do |request|
+      if request.channel == '/chats/' + @chat.id.to_s
+
+        request.permit
+      else
+        request.deny
+      end
+    end
+
     respond_with(@chat)
   end
 

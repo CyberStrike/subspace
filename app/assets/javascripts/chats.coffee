@@ -6,26 +6,33 @@
 $(document).on 'ready page:load', ->
   if $('#chats.show')[0]?
 
+    chatId = window.location.pathname.split('/')[2]
+
     unless window.client?
       window.client = new MessageRocket
 
-    subscribeSuccess = (channel)->
+
+    recieveMessage = (message) ->
+      console.log message
+      $('.chat-item-container')
+      .append("<div class='chat-item'><p class='action'>" + message.data + "</p></div>")
+      .animate({scrollTop: $(".action:last-of-type").offset().top}, 2000)
+
+    subscribeSuccess = (channel) ->
       window.channel = channel
       console.log("Successfully subscribed to channel" + channel)
     subscribeFail = (error) ->
       console.log 'Error: ', error
 
-    client.subscribe( '/games/'+ window.location.pathname.split('/')[2], (message) ->
-      console.log(message))
+    client.subscribe(
+      '/chats/'+ chatId,
+      (message) -> recieveMessage(message))
     .then(
-      subscribeSuccess(channel), subscribeFail(error))
+      (channel) -> subscribeSuccess(channel),
+      (error) -> subscribeFail(error))
 
 
 $(document).on 'ready page:load', ->
   $('#cmd').parent().on 'submit', (event)->
     event.preventDefault()
-    $('.chat-item-container').append("<div class='chat-item'><p class='action'>" + $('#cmd').val() + "</p></div>")
     $('#cmd').val('')
-    $('.chat-item-container').animate({
-      scrollTop: $(".action:last-of-type").offset().top
-    }, 2000);
